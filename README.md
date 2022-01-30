@@ -9,6 +9,8 @@ Scope:
 -Software Upgrade
 -Cutover
 
+*For the SOW cutover, still need to copy and paste manually for the dependency site table and dependency qty 
+
 Let me know if you have any additional SOW, so I can add new syntax in the code. Thank You.
 
 Aktortian Ridno Prabu Pratama
