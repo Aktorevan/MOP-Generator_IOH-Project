@@ -1,4 +1,4 @@
-# MOP-_Generator
+# MOP_Generator_IOH_Project
 Automate to edit multiple MOP documents with python
 
 Please pay attention for writing SOW in the database:
