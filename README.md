@@ -7,6 +7,7 @@ Scope:
 -MW Reroute
 -Change Frequency
 -Software Upgrade
+-Cutover
 
 Let me know if you have any additional SOW, so I can add new syntax in the code. Thank You.
 
