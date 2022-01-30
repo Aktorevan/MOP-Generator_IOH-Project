@@ -12,7 +12,7 @@ filterMOP = data["MOP File Name"].unique()
 reroute_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/dis_route.docx' #Dismantle and reoute 
 software_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/software.docx' #Software upgrade  
 frequency_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/frequency.docx' #Change frequency
-#cutover_temp = '' #Cutover activity
+cutover_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/cutover.docx' #Cutover activity
 #vlan_temp = '' #Vlan ID upgrade
 #ts_temp = '' #Troublshooting activity
 
@@ -76,14 +76,21 @@ for i in filterMOP:
   if filterSOW == "MW Reroute":
 
     proc_MOP(reroute_temp)
+    print(str(i)+".docx generated")
 
   elif filterSOW == "Software Upgrade":
 
     proc_MOP(software_temp)
+    print(str(i)+".docx generated")
   
   elif filterSOW == "Change Frequency":
 
     proc_MOP(frequency_temp)
+    print(str(i)+".docx generated")
 
+  elif filterSOW == "Cutover":
+
+    proc_MOP(cutover_temp)
+    print(str(i)+".docx generated")
   
 
