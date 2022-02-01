@@ -1,21 +1,26 @@
 from mailmerge import MailMerge
 import pandas as pd
 from datetime import date
+import os
 
 #To load the database
-data = pd.read_excel('C:/Users/awx1014609/Desktop/My Lab/sample_db.xlsx')
+data = pd.read_excel('db.xlsx')
 
 #To return the list of MOP file name
 filterMOP = data["MOP File Name"].unique()
 
 #Template .docx
-reroute_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/dis_route.docx' #Dismantle and reoute 
-software_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/software.docx' #Software upgrade  
-frequency_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/frequency.docx' #Change frequency
-cutover_temp = 'C:/Users/awx1014609/Desktop/My Lab/Template/cutover.docx' #Cutover activity
+base_temp = os.path.basename("Template")
+
+reroute_temp = base_temp+'/dis_route.docx' #Dismantle and reoute 
+software_temp = base_temp+'/software.docx' #Software upgrade  
+frequency_temp = base_temp+'/frequency.docx' #Change frequency
+cutover_temp = base_temp+'/cutover.docx' #Cutover activity
 #vlan_temp = '' #Vlan ID upgrade
 #ts_temp = '' #Troublshooting activity
 
+#Output folder
+base_out = os.path.basename("Output")
 
 def proc_MOP(template):
 
@@ -60,7 +65,9 @@ def proc_MOP(template):
                    time = str(exec_time),        
                    duid = tableRows)
 
-    document.write(('C:/Users/awx1014609/Desktop/My Lab/Output/{0}.docx'.format(title)))
+    #Export to output folder
+     
+    document.write((base_out+'/{0}.docx' .format(title)))
 
     
 
