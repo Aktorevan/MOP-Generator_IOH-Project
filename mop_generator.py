@@ -4,6 +4,8 @@ from datetime import date
 import os
 import shutil
 import glob
+import numpy as np
+from colored import fg
 
 '''
 FUNCTION DECLARATION
@@ -104,7 +106,7 @@ EXECUTION PART {THE PROGRAM STARTS HERE}
 '''
 
 #To load the database
-data = pd.read_excel('db.xlsx')
+data = pd.read_excel('db.xlsx',parse_dates = True)
 
 #To return the list of MOP file name
 filterMOP = data["MOP File Name"].unique()
@@ -115,11 +117,20 @@ reroute_temp = base_temp+'/dis_route.docx' #Dismantle and reoute
 software_temp = base_temp+'/software.docx' #Software upgrade  
 frequency_temp = base_temp+'/frequency.docx' #Change frequency
 cutover_temp = base_temp+'/cutover.docx' #Cutover activity
-vlan_temp = base_temp+'/vlan_id.docx'
+vlan_temp = base_temp+'/vlan_id.docx' #vlan id upgrade
+mwupgrade_temp = base_temp+'/mw_upg.docx'
+#wlupgrade = ''
+mwport_temp = base_temp+'/port.docx'
+#power = ''
 #ts_temp = '' #Troublshooting activity
 
 #Output folder
 base_out = os.path.basename("Output")
+
+#Colouring
+tcolor = fg("green") 
+fcolor = fg("red")
+dcolor = fg("white")
 
 for nameMOP in filterMOP:
 
@@ -141,7 +152,8 @@ for nameMOP in filterMOP:
     proc_MOP(reroute_temp)
     proc_DEP(nameMOP)
     CreateFile(nameMOP)
-    print(str(nameMOP)+" generated")
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
   
 
   elif filterSOW == "Software Upgrade":
@@ -149,25 +161,50 @@ for nameMOP in filterMOP:
     proc_MOP(software_temp)
     proc_DEP(nameMOP)
     CreateFile(nameMOP)
-    print(str(nameMOP)+" generated")
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
 
   elif filterSOW == "Change Frequency":
 
     proc_MOP(frequency_temp)
     proc_DEP(nameMOP)
     CreateFile(nameMOP)
-    print(str(nameMOP)+" generated")
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
 
   elif filterSOW == "Cutover":
 
     proc_MOP(cutover_temp)
     proc_DEP(nameMOP)
     CreateFile(nameMOP)
-    print(str(nameMOP)+" generated")
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
   
   elif filterSOW == "Vlan ID":
 
     proc_MOP(vlan_temp)
     proc_DEP(nameMOP)
     CreateFile(nameMOP)
-    print(str(nameMOP)+" generated")
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
+
+  elif filterSOW == "MW Upgrade":
+
+    proc_MOP(mwupgrade_temp)
+    proc_DEP(nameMOP)
+    CreateFile(nameMOP)
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
+
+  elif filterSOW == "Port":
+
+    proc_MOP(mwport_temp)
+    proc_DEP(nameMOP)
+    CreateFile(nameMOP)
+    print(tcolor+str(nameMOP)+" generated")
+    print(dcolor+"")
+
+  else:
+
+    print(fcolor+str(nameMOP)+" failed to generate")
+    print(dcolor+"")
